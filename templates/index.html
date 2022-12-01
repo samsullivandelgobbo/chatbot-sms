@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device_width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+  </head>
+  <body class="h-screen bg-gradient-to-b from-teal-200 to-green-300">
+    <div class="flex p-12">
+      <h1 class="text-2xl font-bold capitalize">add phone number</h1>
+      <div class="flex relative top-32 justify-center text-align-center">
+        <div class="basis-1">
+          <form hx-post="/sms/new" class="p-4 font-medium text-md">
+            <input name="phone_num" />
+            <button class="p-4 mt-4 rounded-full bg-blue-200">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
