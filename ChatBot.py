@@ -37,9 +37,7 @@ def ChatGPT(prompt):
     "temperature": 0.85,
   }
   response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=body)
-  message = response.json()
-  message = message['choices']
-  message = message['text']
+  message = response.json()['choices'][0]['text']
   print(f"New Prompt!\nResponse:{str(message)}")
   return str(message)  
 
