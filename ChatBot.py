@@ -32,18 +32,20 @@ def ChatGPT(prompt):
 
   body = {
     "model": "text-davinci-003",
-    "prompt": prompt,
+    "prompt": f"casual chat:\n{prompt}",
     "max_tokens": 128,
     "temperature": 0.85,
   }
   response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=body)
   print(f"New Prompt!\nStatus:{response.status_code}\nPrompt:{prompt}\nResponse:{response.json()}")
-  
+  message = response.json()
+  message = message['choices']
+  message = message['text']
+  return str(message)  
 
   
 from flask import Flask, request, redirect, render_template
 from twilio.twiml.messaging_response import MessagingResponse
-
 
 
 app = Flask(__name__)
@@ -61,6 +63,7 @@ def sms_reply():
   prompt = body["Body"]
   reply = ChatGPT(prompt)
   resp.message(reply)
+  return str(resp)
 
 @app.route('/sms/new', methods=["POST"])
 def new_chat():
