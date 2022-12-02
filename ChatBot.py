@@ -1,34 +1,3 @@
-# option A: user first prompt
-
-# get user message from twillio api
-
-  # Handle User Input: 
-    # add message to db
-    # log message   
-  
-  # send prompt to gpt api 
-    # make request
-    # handle response():
-      # input to db 
-      # log message 
-      # Handle send message()
-
-
-
-# Handle send message(message, to):
-  # twillio.sendMessage(message, to)
-  # catch err 
-  # if okay:
-    # send message to gpt handler
-  # else:
-    # try again?
-    # if trailing whitspace error add quick whitespace parser from [-0]
-    
-
-
-
-# option B: chatbot sends general prompt first
-
 import requests 
 from dotenv import load_dotenv
 import os
@@ -85,6 +54,7 @@ def index():
 
 @app.route("/sms", methods=["POST"])
 def sms_reply():
+  print(request)
   resp = MessagingResponse()
   resp.message('test hello')
   return str(resp)
