@@ -33,14 +33,14 @@ def ChatGPT(prompt):
   body = {
     "model": "text-davinci-003",
     "prompt": f"casual chat:\n{prompt}",
-    "max_tokens": 128,
+    "max_tokens": 512,
     "temperature": 0.85,
   }
   response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=body)
-  print(f"New Prompt!\nStatus:{response.status_code}\nPrompt:{prompt}\nResponse:{response.json()}")
   message = response.json()
   message = message['choices']
   message = message['text']
+  print(f"New Prompt!\nResponse:{str(message)}")
   return str(message)  
 
   
