@@ -54,18 +54,24 @@ def index():
 
 @app.route("/sms", methods=["POST"])
 def sms_reply():
-  print(request)
   resp = MessagingResponse()
-  resp.message('test hello')
-  return str(resp)
-  
+  data = request.form
+  body = data.to_dict()
+  print(body["Body"])
+  prompt = body["Body"]
+  reply = ChatGPT(prompt)
+  resp.message(reply)
 
 @app.route('/sms/new', methods=["POST"])
 def new_chat():
   phone_num = request.form.get('phone_num')
+  message = request.form.get('message')
+  reply = ChatGPT(message)
+  send_message(phone_num, reply)
   print(phone_num)
+  
   # call twilio stuff with phone num
-  return 'Goodbye'
+  return f'Text sent to {phone_num}'
 
 
 

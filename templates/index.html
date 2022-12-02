@@ -12,7 +12,11 @@
       <div class="flex relative top-32 justify-center text-align-center">
         <div class="basis-1">
           <form hx-post="/sms/new" class="p-4 font-medium text-md">
-            <input name="phone_num" />
+            <div class="m-4">
+              <input name="phone_num" type="number" class="m-2" />
+              <label>Initial message</label>
+              <input name="message" type="text" class="m-2" />
+            </div>
             <button class="p-4 mt-4 rounded-full bg-blue-200">Submit</button>
           </form>
         </div>
